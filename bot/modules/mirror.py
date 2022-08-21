@@ -224,7 +224,7 @@ class MirrorListener:
                             source_link = reply_text.strip()
                             if is_magnet(source_link):
                                 link = telegraph.create_page(
-                                    title='Helios-Mirror Source Link',
+                                    title='Dhruv-Mirror Source Link',
                                     content=source_link,
                                 )["path"]
                                 buttons.buildbutton(f"🔗 Source Link 🔗", f"https://telegra.ph/{link}")
@@ -241,8 +241,8 @@ class MirrorListener:
             msg += f'\n<b>Total Files: </b>{folders}'
             if typ != 0:
                 msg += f'\n<b>Corrupted Files: </b>{typ}'
-            msg += f'\n\n<b>Hey </b>{self.tag} <b>Your task is Completed. Join Leech Dump if you want access to the file.</b>'
-            msg += f'\n<b>It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
+            msg += f'\n\n<b>Hey </b>{self.tag} <b>Your task is Completed. Join Dump if you want access to the file. Or the file will be sent in PM Eventually</b>'
+            msg += f'\n<b>It Took:</b> {get_readable_time(time() - self.message.date.timestamp())} To Complete your Task.'
             msg += f'\n\n<b>Thank You For using {TITLE_NAME}! Keep Supporting & Keep Loving!</b>'
             if not files:
                 sendMessage(msg, self.bot, self.message)
@@ -261,8 +261,8 @@ class MirrorListener:
             if ospath.isdir(f'{DOWNLOAD_DIR}{self.uid}/{name}'):
                 msg += f'\n<b>SubFolders: </b>{folders}'
                 msg += f'\n<b>Files: </b>{files}'
-            msg += f'\n\n<b>Hey </b>{self.tag} <b>Your task is Completed. Join Leech Dump if you want access to the file.</b>'
-            msg += f'\n<b>It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
+            msg += f'\n\n<b>Hey </b>{self.tag} <b>Your task is Completed. Join Dump if you want access to the file. Or the file will be sent in PM Eventually</b>'
+            msg += f'\n<b>It Took:</b> {get_readable_time(time() - self.message.date.timestamp())} To Complete your Task.'
             msg += f'\n\n<b>Thank You For using {TITLE_NAME}! Keep Supporting & Keep Loving!</b>'
             buttons = ButtonMaker()
             link = short_url(link)
@@ -293,7 +293,7 @@ class MirrorListener:
                     mesg = message_args[1]
                     if is_magnet(mesg):
                         link = telegraph.create_page(
-                            title='Helios-Mirror Source Link',
+                            title='Dhruv-Mirror Source Link',
                             content=mesg,
                         )["path"]
                         buttons.buildbutton(f"🔗 Source Link 🔗", f"https://telegra.ph/{link}")
@@ -597,17 +597,17 @@ qb_unzip_mirror_handler = CommandHandler(BotCommands.QbUnzipMirrorCommand, qb_un
 qb_zip_mirror_handler = CommandHandler(BotCommands.QbZipMirrorCommand, qb_zip_mirror,
                                 filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
 leech_handler = CommandHandler(BotCommands.LeechCommand, leech,
-                                filters=CustomFilters.owner_filter, run_async=True)
+                                filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
 unzip_leech_handler = CommandHandler(BotCommands.UnzipLeechCommand, unzip_leech,
-                                filters=CustomFilters.owner_filter, run_async=True)
+                                filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
 zip_leech_handler = CommandHandler(BotCommands.ZipLeechCommand, zip_leech,
-                                filters=CustomFilters.owner_filter, run_async=True)
+                                filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
 qb_leech_handler = CommandHandler(BotCommands.QbLeechCommand, qb_leech,
-                                filters=CustomFilters.owner_filter, run_async=True)
+                                filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
 qb_unzip_leech_handler = CommandHandler(BotCommands.QbUnzipLeechCommand, qb_unzip_leech,
-                                filters=CustomFilters.owner_filter, run_async=True)
+                                filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
 qb_zip_leech_handler = CommandHandler(BotCommands.QbZipLeechCommand, qb_zip_leech,
-                                filters=CustomFilters.owner_filter, run_async=True)
+                                filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
 
 dispatcher.add_handler(mirror_handler)
 dispatcher.add_handler(unzip_mirror_handler)
